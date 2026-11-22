@@ -1,0 +1,81 @@
+ :root {
+  --cream:#f7f2eb; --paper:#fffdf9; --ink:#332a2b; --muted:#928582;
+  --wine:#762f43; --wine-dark:#572132; --rose:#ead8d3; --gold:#c7a77b;
+  --line:#e9dfd5; --ring:#e9ded5;
+}
+*{box-sizing:border-box}
+html{min-height:100%;background:var(--cream)}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:"DM Sans",sans-serif;background:radial-gradient(ellipse at 50% 0%,#fffaf4 0%,var(--cream) 60%);-webkit-font-smoothing:antialiased}
+button{font:inherit}
+.app-shell{width:min(100%,520px);min-height:100vh;margin:0 auto;padding:0 27px 22px;display:flex;flex-direction:column}
+.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(130,94,80,.12)}
+.wordmark{font-family:Manrope,sans-serif;font-weight:800;font-size:27px;letter-spacing:-1.8px;color:var(--wine);text-decoration:none}
+.wordmark span,.footer-dot{color:var(--gold)}
+.top-note{font-size:9px;letter-spacing:1.65px;color:#9b8982;font-weight:700;display:flex;align-items:center;gap:8px}
+.status-dot{width:6px;height:6px;background:#a5a982;border-radius:50%;box-shadow:0 0 0 4px #a5a98222}
+.sound-toggle{border:1px solid var(--line);background:#fff9f2;color:var(--wine);width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer}
+.hero{text-align:center;padding-top:38px;animation:fadeUp .65s ease both}
+.eyebrow{font-size:9px;letter-spacing:2.1px;color:var(--gold);font-weight:700}
+h1,h2{font-family:Manrope,sans-serif;letter-spacing:-2.2px;font-weight:600}
+h1{font-size:clamp(39px,10vw,53px);line-height:1.08;margin:14px 0 12px}
+h1 em,h2 em{font-family:Georgia,serif;font-weight:400;color:var(--wine);letter-spacing:-1.8px}
+.intro-copy{font-size:13px;line-height:1.7;color:var(--muted);max-width:290px;margin:0 auto}
+.hero-art{height:230px;position:relative;margin:18px auto 17px;max-width:340px;overflow:hidden}
+.sun-disc{position:absolute;width:190px;height:190px;border-radius:50%;background:#eee0d5;left:50%;top:17px;transform:translateX(-50%)}
+.tooth-illustration{position:absolute;width:145px;left:50%;top:28px;transform:translateX(-50%) rotate(-7deg);filter:drop-shadow(0 13px 12px #795a4b20);animation:float 4s ease-in-out infinite}
+.sparkle{position:absolute;color:var(--gold);font-size:24px}.sparkle-one{top:35px;left:24%}.sparkle-two{right:22%;top:80px;font-size:18px}
+.hero-caption{position:absolute;bottom:7px;left:0;right:0;font-size:8px;letter-spacing:2.2px;color:#a48e80;font-weight:700}
+.primary-button{width:100%;height:58px;border:0;border-radius:16px;background:var(--wine);color:white;display:flex;align-items:center;justify-content:space-between;padding:0 21px 0 23px;font-size:13px;font-weight:700;letter-spacing:.2px;box-shadow:0 9px 20px #762f4326;cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s}
+.primary-button:hover{background:var(--wine-dark);box-shadow:0 12px 24px #762f4333;transform:translateY(-2px)}
+.primary-button:active{transform:scale(.985)}
+.button-arrow{font-size:19px;font-weight:400}
+.duration-note{margin-top:16px;color:#a08f87;font-size:8px;font-weight:700;letter-spacing:1.5px}.duration-note span{font-size:13px;margin-right:5px;color:var(--gold)}
+.footer{margin-top:auto;padding-top:28px;display:flex;justify-content:space-between;align-items:center;color:#a6968d;font-size:8px;letter-spacing:1.4px;font-weight:700}
+.footer>span:first-child{font-family:Manrope,sans-serif;font-size:17px;letter-spacing:-1px;color:var(--wine)}
+.hidden{display:none!important}
+.session{padding-top:28px;animation:fadeUp .45s ease both}
+.session-heading{display:flex;align-items:center;justify-content:space-between}
+.exit-button{border:0;background:transparent;color:#a18e86;font-size:11px;cursor:pointer}.exit-button span{font-size:17px;margin-left:5px}
+.stage-title-wrap{text-align:center;margin-top:32px}
+.stage-kicker{font-size:8px;letter-spacing:1.65px;color:var(--gold);font-weight:700}
+h2{font-size:38px;line-height:1.1;margin:10px 0 9px}
+.stage-title-wrap p{font-size:12px;color:var(--muted);line-height:1.6;margin:0 auto;max-width:270px}
+.timer-wrap{width:min(74vw,280px);aspect-ratio:1;margin:25px auto 21px;position:relative;display:grid;place-items:center}
+.timer-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
+.timer-ring circle{fill:none;stroke-width:5}
+.ring-track{stroke:var(--ring)}
+.ring-progress{stroke:var(--wine);stroke-linecap:round;stroke-dasharray:791.68;stroke-dashoffset:0;transition:stroke-dashoffset .35s linear}
+.timer-center{text-align:center}
+.timer-label{font-size:8px;letter-spacing:2px;color:#a8958b;font-weight:700}
+.time{font-family:Manrope,sans-serif;font-size:65px;font-weight:600;letter-spacing:-4px;color:var(--wine);font-variant-numeric:tabular-nums;line-height:1.2;margin:4px 0}
+.timer-sub{font-size:8px;letter-spacing:1.5px;color:#b39a8d;font-weight:700}
+.progress-steps{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 auto 22px}
+.progress-step{display:flex;align-items:center;gap:6px;color:#b8aaa1;transition:color .25s}
+.progress-step span{width:26px;height:26px;border:1px solid #e2d6cb;border-radius:50%;display:grid;place-items:center;font-size:9px;font-weight:700}
+.progress-step small{font-size:8px;letter-spacing:1px;font-weight:700}
+.progress-step.active{color:var(--wine)}.progress-step.active span,.progress-step.done span{background:var(--wine);border-color:var(--wine);color:white}
+.progress-step.done{color:#9c887f}.progress-line{height:1px;width:23px;background:#e2d6cb}
+.tip-card{display:flex;gap:13px;align-items:flex-start;background:#fffaf4;border:1px solid #eee4da;border-radius:14px;padding:15px 16px}
+.tip-icon{width:27px;height:27px;border-radius:9px;background:#f0e4d8;color:var(--gold);display:grid;place-items:center;font-size:17px;flex-shrink:0}
+.tip-heading{font-size:8px;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin:1px 0 5px}
+.tip-card p{margin:0;color:#887b74;font-size:11px;line-height:1.55}
+.session-controls{display:flex;gap:10px;margin-top:20px}
+.session-controls .primary-button{flex:1}
+.restart-button{width:58px;border:1px solid var(--line);border-radius:16px;background:#fffaf4;color:var(--wine);font-size:24px;cursor:pointer}
+.quiet-note{text-align:center;font-size:9px;color:#ad9d94;margin:13px 0 0}
+.complete{text-align:center;padding-top:50px;animation:fadeUp .6s ease both}
+.confetti-mark{font-size:43px;color:var(--gold);margin-bottom:20px;animation:spin 9s linear infinite}
+.complete h2{font-size:56px;line-height:1.02;margin:16px 0}
+.complete>p{max-width:270px;margin:0 auto;color:var(--muted);font-size:13px;line-height:1.7}
+.trophy-art{height:130px;display:grid;place-items:center;font-size:75px;color:var(--gold);text-shadow:0 10px 20px #c7a77b40;position:relative}
+.trophy-art:before{content:"";position:absolute;width:116px;height:116px;background:#eee0d5;border-radius:50%;z-index:-1}
+.complete-stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin:8px 0 20px;display:flex;align-items:center;justify-content:center;gap:12px;color:var(--wine)}
+.complete-stats span{font-family:Manrope,sans-serif;font-weight:700;font-size:16px}.complete-stats small{font-size:8px;letter-spacing:1.3px;color:#a8958b}
+.complete .primary-button{margin-top:0}
+.trumpet-note{font-size:10px!important;margin-top:15px!important}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateX(-50%) rotate(-7deg) translateY(0)}50%{transform:translateX(-50%) rotate(-3deg) translateY(-8px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(min-width:600px){.app-shell{min-height:900px;padding-left:38px;padding-right:38px}.hero{padding-top:50px}.hero-art{height:250px}.session{padding-top:38px}.timer-wrap{margin-top:32px;margin-bottom:27px}}
+@media(max-height:760px){.hero{padding-top:20px}.hero-art{height:190px;margin:10px auto}.tooth-illustration{width:125px}.session{padding-top:18px}.stage-title-wrap{margin-top:20px}.timer-wrap{width:min(64vw,230px);margin:17px auto}.complete{padding-top:25px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
