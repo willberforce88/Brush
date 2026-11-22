@@ -35,6 +35,19 @@
         </div>
         <div class="hero-caption">YOUR MOMENT. YOUR SMILE.</div>
       </div>
+
+      <div class="journey-card" id="journeyCard">
+        <div class="journey-top">
+          <div><div class="journey-label">YOUR JOURNEY</div><div class="streak-number"><span>🔥</span> <strong id="streakCount">0</strong> <small>day streak</small></div></div>
+          <div class="freeze-pill" id="freezePill"><span>❄</span><span id="freezeText">1 freeze ready</span></div>
+        </div>
+        <div class="week-row" id="weekRow" aria-label="This week's brushing progress"></div>
+        <div class="journey-bottom">
+          <span><strong id="bestStreak">0</strong> best streak</span>
+          <span><strong id="totalSessions">0</strong> sessions completed</span>
+        </div>
+      </div>
+
       <button class="primary-button start-button" id="startButton">
         <span>Start brushing</span><span class="button-arrow">↗</span>
       </button>
@@ -84,10 +97,11 @@
       <div class="confetti-mark">✳</div>
       <div class="eyebrow">ROUTINE COMPLETE</div>
       <h2>Look at<br><em>you go.</em></h2>
-      <p>You showed up for your smile. That's something worth celebrating.</p>
+      <p id="completeMessage">You showed up for your smile. That's something worth celebrating.</p>
       <div class="trophy-art">✦</div>
       <div class="complete-stats"><span>02:30</span><small>WELL SPENT</small><span>✓</span></div>
       <button class="primary-button" id="againButton"><span>Brush again</span><span>↗</span></button>
+      <button class="text-button" id="homeButton">Back to your journey</button>
       <p class="trumpet-note">A little fanfare, just for you. ♫</p>
     </section>
 
