@@ -10,53 +10,86 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <main class="app-shell">
     <header class="topbar">
-      <a class="wordmark" href="#" aria-label="brush home">brush<span>.</span></a>
+      <a class="wordmark" href="#" id="brandHome" aria-label="brush home">brush<span>.</span></a>
       <div class="top-note"><span class="status-dot"></span> YOUR DAILY RESET</div>
       <button class="sound-toggle" id="soundToggle" aria-label="Toggle sounds" title="Toggle sounds">♫</button>
     </header>
 
-    <section class="hero" id="intro">
-      <div class="eyebrow">A LITTLE TIME FOR YOU</div>
-      <h1>A brighter smile<br><em>starts here.</em></h1>
-      <p class="intro-copy">Two and a half minutes to slow down, reset and give your smile some care.</p>
-      <div class="hero-art" aria-hidden="true">
-        <div class="sun-disc"></div>
-        <div class="sparkle sparkle-one">✳</div><div class="sparkle sparkle-two">✦</div>
-        <div class="tooth-illustration">
-          <svg viewBox="0 0 180 190" role="img" aria-label="">
-            <defs><linearGradient id="tooth" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fffefa"/><stop offset="1" stop-color="#eadfd1"/></linearGradient></defs>
-            <path d="M35 24 C48 9 70 14 88 22 C106 14 132 10 145 29 C162 52 146 91 135 119 C125 145 119 177 103 177 C89 177 91 132 78 132 C63 132 63 178 48 177 C31 175 28 137 19 109 C8 76 13 43 35 24Z" fill="url(#tooth)" stroke="#d8c8b5" stroke-width="3"/>
-            <path d="M43 38 C56 25 72 30 88 36 C105 28 124 26 136 41" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".8"/>
-          </svg>
+    <section class="profiles-screen hidden" id="profilesScreen">
+      <div class="eyebrow">A LITTLE TIME FOR EVERYONE</div>
+      <h1>Who's brushing<br><em>today?</em></h1>
+      <p class="intro-copy">Choose your profile to see your own brushing journey.</p>
+      <div class="profile-list" id="profileList">
+        <div class="loading-card">Loading your household...</div>
+      </div>
+      <form class="new-profile-form" id="newProfileForm">
+        <label for="newProfileName">CREATE A NEW PROFILE</label>
+        <div class="new-profile-row">
+          <input id="newProfileName" maxlength="24" placeholder="Enter a first name" autocomplete="off" required>
+          <button class="add-profile-button" type="submit" aria-label="Create profile">+</button>
         </div>
-        <div class="hero-caption">YOUR MOMENT. YOUR SMILE.</div>
+      </form>
+      <p class="screen-note" id="profileMessage">Profiles are shared across your household devices.</p>
+    </section>
+
+    <section class="home-screen hidden" id="homeScreen">
+      <div class="home-greeting">
+        <div>
+          <div class="eyebrow">WELCOME BACK</div>
+          <h1 class="home-title">Hello, <em id="activeName">William</em>.</h1>
+          <p class="intro-copy home-copy">A little care, twice a day. You've got this.</p>
+        </div>
+        <button class="switch-profile" id="switchProfile">Switch<br>profile ↗</button>
       </div>
 
-      <div class="journey-card" id="journeyCard">
-        <div class="journey-top">
-          <div><div class="journey-label">YOUR JOURNEY</div><div class="streak-number"><span>🔥</span> <strong id="streakCount">0</strong> <small>day streak</small></div></div>
-          <div class="freeze-pill" id="freezePill"><span>❄</span><span id="freezeText">1 freeze ready</span></div>
+      <div class="streak-card">
+        <div class="streak-top">
+          <div>
+            <div class="journey-label">YOUR CURRENT STREAK</div>
+            <div class="streak-number"><span>🔥</span> <strong id="streakCount">0</strong> <small>days</small></div>
+          </div>
+          <div class="freeze-pill" id="freezePill">❄ <span id="freezeText">1 freeze ready</span></div>
         </div>
-        <div class="week-row" id="weekRow" aria-label="This week's brushing progress"></div>
+        <div class="week-row" id="weekRow"></div>
         <div class="journey-bottom">
           <span><strong id="bestStreak">0</strong> best streak</span>
-          <span><strong id="totalSessions">0</strong> sessions completed</span>
+          <span><strong id="totalSessions">0</strong> sessions</span>
         </div>
       </div>
 
-      <button class="primary-button start-button" id="startButton">
-        <span>Start brushing</span><span class="button-arrow">↗</span>
-      </button>
-      <div class="duration-note"><span>◷</span> JUST 2 MINUTES 30 SECONDS</div>
+      <div class="today-heading">
+        <div><div class="eyebrow">YOUR DAILY ROUTINE</div><h2>Today, gently.</h2></div>
+        <span class="today-date" id="todayDate"></span>
+      </div>
+
+      <div class="routine-card">
+        <div class="routine-row">
+          <div class="routine-icon morning-icon">☀</div>
+          <div class="routine-info"><strong>Morning brush</strong><small>2 minutes 30 seconds</small></div>
+          <span class="routine-status" id="amStatus">Not done</span>
+        </div>
+        <button class="routine-button" id="amButton">Start morning brush <span>↗</span></button>
+        <div class="routine-divider"></div>
+        <div class="routine-row">
+          <div class="routine-icon evening-icon">☾</div>
+          <div class="routine-info"><strong>Evening brush</strong><small>2 minutes 30 seconds</small></div>
+          <span class="routine-status" id="pmStatus">Not done</span>
+        </div>
+        <button class="routine-button" id="pmButton">Start evening brush <span>↗</span></button>
+      </div>
+
+      <div class="daily-note"><span>✧</span><p>Your daily streak is complete when both your morning and evening brushes are finished.</p></div>
+      <button class="refresh-button" id="refreshButton">↻ Refresh household progress</button>
     </section>
 
     <section class="session hidden" id="session" aria-live="polite">
       <div class="session-heading">
-        <div class="eyebrow" id="stageCount">CHECKPOINT 01 / 03</div>
+        <div class="eyebrow" id="stageCount">MORNING · CHECKPOINT 01 / 03</div>
         <button class="exit-button" id="exitButton">Exit session <span>×</span></button>
       </div>
       <div class="stage-title-wrap">
@@ -93,18 +126,48 @@
       <p class="quiet-note">Keep your brush gentle and follow your dentist's advice.</p>
     </section>
 
+    <section class="mouthwash-screen hidden" id="mouthwashScreen">
+      <div class="mouthwash-symbol">✧</div>
+      <div class="eyebrow">BRUSHING COMPLETE</div>
+      <h2>Fancy some<br><em>mouthwash?</em></h2>
+      <p class="intro-copy">It's optional. Follow the instructions on your mouthwash bottle.</p>
+      <div class="mouthwash-warning">Dental tip: fluoride mouthwash is best used at a different time from brushing, so it doesn't rinse away the fluoride from your toothpaste.</div>
+      <div class="mouthwash-actions">
+        <button class="primary-button" id="mouthwashYes"><span>Yes, start 30 seconds</span><span>↗</span></button>
+        <button class="skip-button" id="mouthwashNo">No thanks, finish my routine</button>
+      </div>
+    </section>
+
+    <section class="mouthwash-timer hidden" id="mouthwashTimer">
+      <div class="eyebrow">OPTIONAL EXTRA STEP</div>
+      <h2>Your little<br><em>mouthwash pause.</em></h2>
+      <div class="timer-wrap small-timer">
+        <svg class="timer-ring" viewBox="0 0 280 280" aria-hidden="true">
+          <circle class="ring-track" cx="140" cy="140" r="126"/>
+          <circle class="ring-progress" id="mouthwashRing" cx="140" cy="140" r="126"/>
+        </svg>
+        <div class="timer-center">
+          <div class="timer-label">TIME LEFT</div>
+          <div class="time" id="mouthwashTime">0:30</div>
+          <div class="timer-sub">FOLLOW THE BOTTLE LABEL</div>
+        </div>
+      </div>
+      <p class="intro-copy">Use mouthwash at a separate time from brushing unless your dental professional has advised otherwise.</p>
+      <button class="primary-button" id="mouthwashFinish"><span>Finish early</span><span>↗</span></button>
+    </section>
+
     <section class="complete hidden" id="complete" aria-live="polite">
       <div class="confetti-mark">✳</div>
       <div class="eyebrow">ROUTINE COMPLETE</div>
       <h2>Look at<br><em>you go.</em></h2>
       <p id="completeMessage">You showed up for your smile. That's something worth celebrating.</p>
       <div class="trophy-art">✦</div>
-      <div class="complete-stats"><span>02:30</span><small>WELL SPENT</small><span>✓</span></div>
-      <button class="primary-button" id="againButton"><span>Brush again</span><span>↗</span></button>
-      <button class="text-button" id="homeButton">Back to your journey</button>
+      <div class="complete-stats"><span id="completePeriod">AM</span><small>BRUSH COMPLETE</small><span>✓</span></div>
+      <button class="primary-button" id="doneButton"><span>Back to your journey</span><span>↗</span></button>
       <p class="trumpet-note">A little fanfare, just for you. ♫</p>
     </section>
 
+    <div class="toast hidden" id="toast" role="status"></div>
     <footer class="footer"><span>brush<span class="footer-dot">.</span></span><span>MADE FOR YOUR EVERYDAY</span></footer>
   </main>
   <script src="script.js"></script>
